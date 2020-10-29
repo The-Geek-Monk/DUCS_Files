@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Assignment</title>
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            justify-content: center;
+
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        button {
+            cursor: pointer;
+            display: flex;
+            align-self: center;
+            padding: 10px 40px;
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        #container {
+            display: flex;
+            justify-content: center;
+        }
+
+        #head {
+
+
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body onload="checkCookie()">
+    <div id="head">
+        <h1>Lets Make Some Cookies</h1>
+        <h3>Assignment | Vasu Sehgal | 46</h3>
+
+    </div>
+    <div id="container">
+        <button onclick="getCookie()" style="background-color: lightblue;">Display Cookie</button>
+        <button onclick="setCookie()" style="background-color: lightgreen;">Create Cookie</button>
+        <button onclick="resetCookie()" style="background-color: #ffcccb;">Delete Cookie</button>
+    </div>
+    <script>
+        function setCookie() {
+            var cookieValue = prompt('Enter Your Name');
+            document.cookie = "Username =" + cookieValue;
+            console.log("Username =" + cookieValue);
+        }
+        function getCookie() {
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var c_array = decodedCookie.split(';');
+
+            for (var i = 0; i < c_array.length; i++) {
+
+                var c_elem = c_array[i];
+
+                while (c_elem.charAt(0) == ' ') {
+                    c_elem = c_elem.substring(1);
+                }
+
+                if (c_elem.indexOf('Username') == 0) {
+                    return alert("Username=" + c_elem.substring(9, c_elem.length));
+                }
+            }
+            return alert("");
+        }
+        function resetCookie() {
+            document.cookie = 'Username=; Path=/; Expires=Thu, 10 Aug 1995 00:00:01 GMT;';
+        }
+        
+    </script>
+</body>
+
+</html>
